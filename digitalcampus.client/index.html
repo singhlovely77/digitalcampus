@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-color-theme="blue" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Campus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+          rel="stylesheet" />
+          <link href="/src/globals.css" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                const theme = localStorage.getItem("theme") || "system";
+                const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                const resolvedTheme = theme === "system" ? systemTheme : theme;
+
+                if (resolvedTheme === "dark") {
+                    document.documentElement.classList.add("dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                }
+
+                const colorTheme = localStorage.getItem("color-theme") || "blue";
+                document.documentElement.setAttribute("data-color-theme", colorTheme);
+            } catch (e) { }
+        })();
+    </script>
+</head>
+<body>
+    <div id="root" className="pt-16"></div>
+    <script type="module" src="/src/index.tsx"></script>
+</body>
+</html>

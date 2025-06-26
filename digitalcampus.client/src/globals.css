@@ -1,0 +1,338 @@
+@import "tailwindcss";
+
+/*
+  Approximated Tailwind CSS v4 Compatibility Conversion
+
+  Disclaimer:
+  Tailwind CSS v4 is currently in development, and its final API
+  and syntax are subject to change. This conversion is based on
+  proposed features and general direction (e.g., increased use of
+  CSS variables, potential `@theme` directive for design tokens).
+  It might not work directly with any pre-release versions of v4.
+  Always refer to the official Tailwind CSS v4 documentation once
+  it's released.
+*/
+
+/*
+  In Tailwind CSS v4, we anticipate a more direct way of defining
+  design tokens using CSS variables, potentially through a new
+  `@theme` directive or similar. This replaces the `:root` and `.dark`
+  selectors for color definitions in many cases.
+
+  For now, we'll keep the CSS variable definitions as they are,
+  as v4 is expected to leverage them heavily.
+*/
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 94.1%;
+}
+
+/* Color Theme Variations */
+/*
+  In v4, these might be defined more declaratively within a theme
+  configuration, but keeping them as CSS variables associated with
+  `data-color-theme` attributes remains a valid and flexible approach.
+*/
+[data-color-theme="blue"] {
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+}
+
+[data-color-theme="green"] {
+  --primary: 142.1 76.2% 36.3%;
+  --primary-foreground: 355.7 100% 97.3%;
+}
+
+[data-color-theme="purple"] {
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 40% 98%;
+}
+
+[data-color-theme="orange"] {
+  --primary: 24.6 95% 53.1%;
+  --primary-foreground: 60 9.1% 97.8%;
+}
+
+[data-color-theme="red"] {
+  --primary: 0 84.2% 60.2%;
+  --primary-foreground: 210 40% 98%;
+}
+
+[data-color-theme="pink"] {
+  --primary: 322.2 78.8% 60.4%;
+  --primary-foreground: 210 40% 98%;
+}
+
+/* Dark mode color theme variations */
+.dark[data-color-theme="green"] {
+  --primary: 142.1 70.6% 45.3%;
+}
+
+.dark[data-color-theme="purple"] {
+  --primary: 262.1 83.3% 67.8%;
+}
+
+.dark[data-color-theme="orange"] {
+  --primary: 24.6 95% 63.1%;
+}
+
+.dark[data-color-theme="red"] {
+  --primary: 0 84.2% 70.2%;
+}
+
+.dark[data-color-theme="pink"] {
+  --primary: 322.2 78.8% 70.4%;
+}
+
+/*
+  In Tailwind CSS v4, the `@layer base` might still exist,
+  but the way utility classes are generated or defined could change.
+  For now, we'll retain the direct CSS variable usage which is
+  expected to be a core part of v4.
+*/
+* {
+  /* Using `border-color: hsl(var(--border));` is already compatible. */
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  transition:
+    background-color 0.3s,
+    color 0.3s; /* Keeping simple transitions */
+}
+
+/*
+  The `@layer utilities` might evolve, but custom utilities
+  are still expected to be definable. In v4, there might be
+  more streamlined ways to define these, or they might be
+  generated more directly from a configuration.
+
+  For now, these can largely remain as direct CSS rules.
+*/
+
+/* Custom responsive utilities */
+.container-responsive {
+  width: 100%;
+  max-width: 1280px; /* Equivalent to max-w-7xl (1280px) */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .container-responsive {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem; /* sm:px-6 */
+  }
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+  .container-responsive {
+    padding-left: 2rem; /* lg:px-8 */
+    padding-right: 2rem; /* lg:px-8 */
+  }
+}
+
+
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem; /* gap-4 */
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .grid-responsive {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* sm:grid-cols-2 */
+    gap: 1.5rem; /* sm:gap-6 */
+  }
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+  .grid-responsive {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* lg:grid-cols-3 */
+  }
+}
+@media (min-width: 1280px) { /* xl breakpoint */
+  .grid-responsive {
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* xl:grid-cols-4 */
+  }
+}
+
+
+.card-hover {
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+}
+.card-hover:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* hover:shadow-lg */
+  transform: translateY(-0.25rem); /* hover:-translate-y-1 */
+}
+
+.text-responsive {
+  font-size: 0.875rem; /* text-sm */
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .text-responsive {
+    font-size: 1rem; /* sm:text-base */
+  }
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+  .text-responsive {
+    font-size: 1.125rem; /* lg:text-lg */
+  }
+}
+
+/* Theme transition utilities */
+.theme-transition {
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+}
+
+/* Define border-border utility explicitly */
+/* This is already a direct CSS variable usage, so it's likely compatible. */
+.border-border {
+  border-color: hsl(var(--border));
+}
+
+/* Ensure smooth transitions for theme changes */
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Smooth transitions for all themeable elements */
+/*
+  This block is already direct CSS and defines transitions.
+  It's likely to remain compatible.
+*/
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    fill 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent transitions during page load */
+.preload-transitions * {
+  transition: none !important;
+}
+
+/* Custom collapsible animations */
+/* These are standard CSS animations and should remain compatible. */
+@keyframes collapsible-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.animate-collapsible-down {
+  animation: collapsible-down 0.2s ease-out;
+}
+
+.animate-collapsible-up {
+  animation: collapsible-up 0.2s ease-out;
+}
+
+/*
+  Force responsive classes to work:
+  This section directly overrides grid-template-columns with `!important`.
+  In a v4 context, it's hoped that the default responsive utilities
+  would be sufficient, or custom utilities would be defined in a way
+  that doesn't require `!important` to override core Tailwind classes.
+  However, as a direct CSS declaration, it will continue to function.
+*/
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
